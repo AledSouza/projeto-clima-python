@@ -1,49 +1,130 @@
-Projeto de Análise de Dados Climáticos com Python
-Projeto pensado para uso em sala de aula, com o propósito de demonstrar possibilidades de uso de bibliotecas em Python na prática — desde consumo de APIs até visualização e mapas.
+# Análise de Dados Climáticos com Python
 
-Aluno: Alex Sandro da Costa Silva Souza
+Projeto educacional de análise de dados que integra coleta via API, processamento e visualização, com foco em transformar dados climáticos brutos em informações interpretáveis.
+
+## Autor
+
+Alex Sandro da Costa Silva Souza
+
+## Visão Geral
+
+Este projeto demonstra um fluxo completo de análise de dados:
+
+1. Coleta de dados climáticos em tempo real e históricos via API
+2. Tratamento e organização dos dados com Pandas
+3. Geração de visualizações para análise exploratória
+4. Representação geográfica com mapas interativos
 
 
+## Tecnologias Utilizadas
 
-O aluno deve acessar com o e-mail institucional da Estácio e escolher a opção Aluno TI.
+- Python
+- Requests (consumo de API)
+- JSON (estrutura de dados)
+- Pandas (tratamento e análise)
+- Matplotlib (visualização)
+- Folium (mapas interativos)
 
-Atenção: o ambiente VDI Cloud pode apagar os arquivos do projeto quando o aluno fechar a página (ou encerrar a sessão). Por isso, ao final da aula, o trabalho deve ser enviado para o GitHub pessoal do aluno (por exemplo com git push), seguindo o TUTORIAL_GIT_ALUNOS.md.
+## Fonte dos Dados
 
-Construção do projeto (tutoriais)
-Para montar o projeto atual do zero e versionar o trabalho no Git, siga os tutoriais em Markdown deste repositório — eles são o roteiro oficial da disciplina:
+Dados obtidos da API pública Open-Meteo:
 
-Arquivo	Conteúdo
-TUTORIAL_CONSTRUCAO.md	Passo a passo para criar ambiente, dependências, pastas e cada script (API, Pandas, gráficos e mapas).
-TUTORIAL_GIT_ALUNOS.md	Passo a passo para salvar o projeto no Git e (opcional) publicar no GitHub.
-Resumo do que será construído
-Ambiente: pasta do projeto, ambiente virtual recomendado, pasta output/ para arquivos gerados e instalação das bibliotecas via requirements.txt.
-analise_clima.py: consumo da API Open-Meteo (previsão horária), organização em DataFrame, agregação por dia e três gráficos (barras, pizza e dispersão) salvos em output/.
-mapa_calor.py: temperatura atual em várias cidades brasileiras e mapa de calor interativo em HTML com Folium.
-mapa_calor_temperatura_anual.py: dados históricos por ano, média anual por cidade, exportação em CSV e outro mapa de calor em HTML.
-Git: repositório local, commits e, se desejado, repositório remoto (ex.: GitHub) com push.
-Depois de seguir os tutoriais, use a seção Como executar abaixo para rodar os scripts já prontos.
+- https://api.open-meteo.com/v1/forecast  
+- https://archive-api.open-meteo.com/v1/archive  
 
-Objetivo didático
-Em aula, o material apoia a prática com bibliotecas como:
+A API fornece dados climáticos sem necessidade de autenticação, facilitando testes e experimentação.
 
-Requests
-JSON (módulo da biblioteca padrão)
-Pandas
-Matplotlib
-Folium (mapas interativos), nos scripts de mapa de calor
-Fonte dos dados: Open-Meteo
-Os dados deste projeto vêm da API pública Open-Meteo, um serviço de dados meteorológicos acessível por HTTP, com respostas em JSON.
+## Estrutura do Projeto
 
-Resumo para a aula
 
-Oferece previsão (por exemplo, série horária com alguns dias à frente) e arquivo histórico (séries diárias ou outras granularidades), conforme o endpoint e os parâmetros usados.
-Neste repositório usamos, em geral: previsão em https://api.open-meteo.com/v1/forecast (temperatura atual ou horária) e histórico em https://archive-api.open-meteo.com/v1/archive (médias diárias para calcular a média anual).
-Para experimentos em sala costuma bastar latitude, longitude e os campos desejados na URL (temperatura, umidade, precipitação, etc.), sem cadastro obrigatório para o uso básico descrito na documentação oficial.
-A documentação e os parâmetros disponíveis estão em open-meteo.com — Documentação.
-Funcionalidades
-Acessa dados climáticos online;
-Converte a resposta da API para JSON;
-Organiza os dados com Pandas;
-Gera análise exploratória simples;
-Cria gráficos de barras, pizza e dispersão;
-Gera mapas de calor em HTML (quando aplicável aos scripts do repositório).
+PROJETO-CLIMA-PYTHON/
+│
+├── output/
+│ ├── grafico_barras_temperatura.png
+│ ├── grafico_dispersao_temperatura.png
+│ ├── grafico_pizza_chuva.png
+│ ├── mapa_calor_temperatura_media_anual.html
+│ ├── mapa_calor_temperaturas.html
+│ ├── temperatura_media_anual_cidades.csv
+│
+├── analise_clima.py
+├── mapa_calor.py
+├── mapa_calor_temperatura_anual.py
+├── requirements.txt
+├── .gitignore
+└── README.md
+
+
+## Funcionalidades
+
+- Coleta de dados climáticos via API REST
+- Normalização e estruturação de dados em DataFrame
+- Análise exploratória básica
+- Geração de visualizações:
+  - Gráfico de barras (temperatura)
+  - Gráfico de pizza (chuva)
+  - Gráfico de dispersão (variação)
+- Geração de mapas de calor interativos
+- Exportação de dados para CSV
+
+## Scripts
+
+### analise_clima.py
+Responsável pela coleta e análise de dados de previsão:
+
+- Consome dados da API
+- Processa e organiza informações
+- Gera gráficos de análise
+
+### mapa_calor.py
+Responsável pela visualização geográfica atual:
+
+- Coleta temperatura de múltiplas cidades
+- Gera mapa de calor interativo
+
+### mapa_calor_temperatura_anual.py
+Responsável pela análise histórica:
+
+- Coleta dados históricos
+- Calcula média anual por cidade
+- Exporta dados estruturados
+- Gera mapa de calor anual
+
+## Como Executar
+
+### 1. Clonar o repositório
+
+
+git clone https://github.com/AledSouza/projeto-clima-python.git
+cd PROJETO-CLIMA-PYTHON
+
+
+### 2. Instalar dependências
+
+
+pip install -r requirements.txt
+
+
+### 3. Executar os scripts
+
+
+python analise_clima.py
+python mapa_calor.py
+python mapa_calor_temperatura_anual.py
+
+
+## Resultados Gerados
+
+Os resultados são armazenados na pasta `output/` e incluem:
+
+- Visualizações em formato PNG
+- Mapas interativos em HTML
+- Dataset processado em CSV
+
+## Considerações
+
+O projeto foi estruturado com foco didático, mas segue práticas utilizadas em projetos reais de análise de dados, como separação de responsabilidades, organização de outputs e uso de bibliotecas consolidadas.
+
+## Conclusão
+
+Este projeto consolida conceitos essenciais de análise de dados, integrando coleta, processamento e visualização, servindo como base para aplicações mais avançadas na área.
